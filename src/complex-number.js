@@ -19,7 +19,25 @@ const createComplexNumber = function(realPart, imaginaryPart) {
     return realPart;
   }
 
-  return {toString, getRealPart, getImaginaryPart};
+  const add = function(complexNumber) {
+    const result = {
+      realPart: realPart + complexNumber.getRealPart(),
+      imaginaryPart: imaginaryPart + complexNumber.getImaginaryPart()
+    };
+
+    return createComplexNumber(result.realPart, result.imaginaryPart);
+  }
+
+  const multiply = function(complexNumber) {
+    const result = {
+      realPart: realPart * complexNumber.getRealPart() - imaginaryPart * complexNumber.getImaginaryPart(),
+      imaginaryPart: realPart * complexNumber.getImaginaryPart() + imaginaryPart * complexNumber.getRealPart()
+    };
+
+    return createComplexNumber(result.realPart, result.imaginaryPart);
+  }
+
+  return {toString, getRealPart, getImaginaryPart, add, multiply};
 }
 
 
