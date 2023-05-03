@@ -1,9 +1,11 @@
 const createComplexNumber = function(realPart, imaginaryPart) {
   const toString = function() {
+    if(!imaginaryPart) return `${realPart}`
+
     if(!realPart) return `${imaginaryPart}i`;
 
-    const operator = imaginaryPart < 0 ? "-" : "+";
-    return`${realPart} ${operator} ${Math.abs(imaginaryPart)}i`; 
+    const sign = imaginaryPart < 0 ? "-" : "+";
+    return`${realPart} ${sign} ${Math.abs(imaginaryPart)}i`; 
   }
 
   const getImaginaryPart = function() {
@@ -15,21 +17,17 @@ const createComplexNumber = function(realPart, imaginaryPart) {
   }
 
   const add = function(addend) {
-    const sum = {
-      realPart: realPart + addend.getRealPart(),
-      imaginaryPart: imaginaryPart + addend.getImaginaryPart()
-    };
+    const sumRealPart =  realPart + addend.getRealPart();
+    const sumImaginaryPart = imaginaryPart + addend.getImaginaryPart();
 
-    return createComplexNumber(sum.realPart, sum.imaginaryPart);
+    return createComplexNumber(sumRealPart, sumImaginaryPart);
   }
 
   const multiply = function(multiplier) {
-    const product = {
-      realPart: realPart * multiplier.getRealPart() - imaginaryPart * multiplier.getImaginaryPart(),
-      imaginaryPart: realPart * multiplier.getImaginaryPart() + imaginaryPart * multiplier.getRealPart()
-    };
+    const productRealPart = realPart * multiplier.getRealPart() - imaginaryPart * multiplier.getImaginaryPart();
+    const productImaginaryPart = realPart * multiplier.getImaginaryPart() + imaginaryPart * multiplier.getRealPart();
 
-    return createComplexNumber(product.realPart, product.imaginaryPart);
+    return createComplexNumber(productRealPart, productImaginaryPart);
   }
 
   return {toString, getRealPart, getImaginaryPart, add, multiply};

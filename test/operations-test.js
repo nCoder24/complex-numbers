@@ -10,10 +10,28 @@ describe("Complex Number", function() {
       strictEqual(complexNum.toString(), "3 + 4i"); 
     });
 
-    it("should give only imaginary part if realpart is 0", function() {
+    it("should give only imaginary part if realPart is 0", function() {
       const complexNum = createComplexNumber(0, 5);
 
       strictEqual(complexNum.toString(), "5i");
+    });
+
+    it("should give only real part if imaginaryPart is 0", function() {
+      const complexNum = createComplexNumber(5, 0);
+
+      strictEqual(complexNum.toString(), "5");
+    });
+
+    it("should give negative sign before realPart when realPart is negative", function() {
+      const complexNum = createComplexNumber(-4, 5);
+
+      strictEqual(complexNum.toString(), "-4 + 5i");
+    });
+
+    it("should get a negative sign in the middle when imaginary part is negative", function() {
+      const complexNum = createComplexNumber(4, -5);
+
+      strictEqual(complexNum.toString(), "4 - 5i");
     });
   });
 
