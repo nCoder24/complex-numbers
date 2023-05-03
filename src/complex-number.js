@@ -14,22 +14,22 @@ const createComplexNumber = function(realPart, imaginaryPart) {
     return realPart;
   }
 
-  const add = function(complexNumber) {
-    const result = {
-      realPart: realPart + complexNumber.getRealPart(),
-      imaginaryPart: imaginaryPart + complexNumber.getImaginaryPart()
+  const add = function(addend) {
+    const sum = {
+      realPart: realPart + addend.getRealPart(),
+      imaginaryPart: imaginaryPart + addend.getImaginaryPart()
     };
 
-    return createComplexNumber(result.realPart, result.imaginaryPart);
+    return createComplexNumber(sum.realPart, sum.imaginaryPart);
   }
 
-  const multiply = function(complexNumber) {
-    const result = {
-      realPart: realPart * complexNumber.getRealPart() - imaginaryPart * complexNumber.getImaginaryPart(),
-      imaginaryPart: realPart * complexNumber.getImaginaryPart() + imaginaryPart * complexNumber.getRealPart()
+  const multiply = function(multiplier) {
+    const product = {
+      realPart: realPart * multiplier.getRealPart() - imaginaryPart * multiplier.getImaginaryPart(),
+      imaginaryPart: realPart * multiplier.getImaginaryPart() + imaginaryPart * multiplier.getRealPart()
     };
 
-    return createComplexNumber(result.realPart, result.imaginaryPart);
+    return createComplexNumber(product.realPart, product.imaginaryPart);
   }
 
   return {toString, getRealPart, getImaginaryPart, add, multiply};
