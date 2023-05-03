@@ -54,14 +54,20 @@ describe("Complex Number", function() {
       const complexNum1 = createComplexNumber(2, 3);
       const complexNum2 = createComplexNumber(5, 4);
 
-      strictEqual(complexNum1.add(complexNum2).toString(), "7 + 7i")
+      const sum = complexNum1.add(complexNum2);
+
+      strictEqual(sum.getRealPart(), 7);
+      strictEqual(sum.getImaginaryPart(), 7);
     });
 
     it("should multiply two complex complexNumbers", function() {
       const complexNum1 = createComplexNumber(2, 3);
       const complexNum2 = createComplexNumber(1, 2);
 
-      strictEqual(complexNum1.multiply(complexNum2).toString(), "-4 + 7i")
+      const product = complexNum1.multiply(complexNum2);
+
+      strictEqual(product.getRealPart(), -4);
+      strictEqual(product.getImaginaryPart(), 7);
     });
   });
 });
