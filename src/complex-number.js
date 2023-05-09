@@ -1,37 +1,40 @@
-const createComplexNumber = function(realPart, imaginaryPart) {
-  const toString = function() {
-    if(!imaginaryPart) return `${realPart}`
+class ComplexNumber {
+  #real
+  #imaginary
 
-    if(!realPart) return `${imaginaryPart}i`;
+  constructor(real, imaginary) {
+    this.#real = real;
+    this.#imaginary = imaginary;
+  };
 
-    const sign = imaginaryPart < 0 ? "-" : "+";
-    return`${realPart} ${sign} ${Math.abs(imaginaryPart)}i`; 
+  toString() {
+    if(!this.#imaginary) return this.#real.toString();
+    if(!this.#real) return this.#imaginary.toString() + "i";
+
+    const sign = this.#imaginary < 0 ? "-" : "+";
+    return `${this.#real} ${sign} ${Math.abs(this.#imaginary)}i`;
   }
 
-  const getImaginaryPart = function() {
-    return imaginaryPart;
+  equals(other) {
+    const hasSameReal = this.#real === other.#real;
+    const hasSameImaginary = this.#imaginary === other.#imaginary;
+    
+    return hasSameReal && hasSameImaginary;
   }
 
-  const getRealPart = function() {
-    return realPart;
+  add(addend) {
+    const real = this.#real + addend.#real; 
+    const imaginary = this.#imaginary + addend.#imaginary;
+
+    return new ComplexNumber(real, imaginary);
   }
+  
+  multiply(multiplier) {
+    const real = this.#real * multiplier.#real - this.#imaginary * multiplier.#imaginary;
+    const imaginary = this.#real * multiplier.#imaginary + this.#imaginary * multiplier.#real;
 
-  const add = function(addend) {
-    const sumRealPart =  realPart + addend.getRealPart();
-    const sumImaginaryPart = imaginaryPart + addend.getImaginaryPart();
-
-    return createComplexNumber(sumRealPart, sumImaginaryPart);
+    return new ComplexNumber(real, imaginary);
   }
-
-  const multiply = function(multiplier) {
-    const productRealPart = realPart * multiplier.getRealPart() - imaginaryPart * multiplier.getImaginaryPart();
-    const productImaginaryPart = realPart * multiplier.getImaginaryPart() + imaginaryPart * multiplier.getRealPart();
-
-    return createComplexNumber(productRealPart, productImaginaryPart);
-  }
-
-  return {toString, getRealPart, getImaginaryPart, add, multiply};
 }
 
-
-exports.createComplexNumber = createComplexNumber;
+exports.ComplexNumber = ComplexNumber;
