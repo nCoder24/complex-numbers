@@ -24,7 +24,7 @@ class ImaginaryNumber {
   }
 
   multiply(other) {
-    return this.#value.multiply(other.#value);
+    return this.#value.multiply(other.#value).multiply(new RealNumber(-1));
   }
 
   multiplyReal(other) {

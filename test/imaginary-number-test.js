@@ -52,7 +52,7 @@ describe("multiply", function() {
     const multiplier = new ImaginaryNumber(new RealNumber(4));
 
     const product = multiplicand.multiply(multiplier);
-    const expectedProdect = new RealNumber(20);
+    const expectedProdect = new RealNumber(-20);
 
     assert.ok(expectedProdect.equals(product));
   });
