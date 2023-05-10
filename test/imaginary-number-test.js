@@ -11,6 +11,14 @@ describe("toString", function() {
   });
 });
 
+describe("isZero", function() {
+  it("should be true if it's value is 0", function() {
+    const imaginaryNumber = new ImaginaryNumber(new RealNumber(0));
+
+    assert.ok(imaginaryNumber.isZero());
+  });
+});
+
 describe("isNegative", function() {
   it("should be true if it's value is negative", function() {
     const realNumber = new ImaginaryNumber(new RealNumber(-1));

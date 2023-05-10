@@ -15,6 +15,10 @@ class ImaginaryNumber {
     return this.#value.isNegative();
   }
 
+  isZero() {
+    return this.#value.isZero();
+  }
+
   equals(other) {
     return this.#value.equals(other.#value);
   }

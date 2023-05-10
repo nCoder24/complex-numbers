@@ -5,7 +5,16 @@ const { RealNumber } = require("../src/real-number");
 describe("toString", function () {
   it("should get value as string", function () {
     const realNumber = new RealNumber(4);
+    
     assert.strictEqual(realNumber.toString(), "4");
+  });
+});
+
+describe("isZero", function() {
+  it("should be true if it's value is zero", function() {
+    const realNumber = new RealNumber(0);
+
+    assert.ok(realNumber.isZero());
   });
 });
 
