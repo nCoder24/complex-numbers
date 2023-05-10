@@ -8,31 +8,36 @@ class ComplexNumber {
   };
 
   toString() {
-    if(!this.#imaginary) return this.#real.toString();
-    if(!this.#real) return this.#imaginary.toString() + "i";
+    if(this.#real.isZero()) return this.#imaginary.toString();
+    if(this.#imaginary.isZero()) return this.#real.toString();
 
-    const sign = this.#imaginary < 0 ? "-" : "+";
-    return `${this.#real} ${sign} ${Math.abs(this.#imaginary)}i`;
+    const sign = this.#imaginary.isNegative() ? "" : "+";
+    return this.#real + sign + this.#imaginary;
   }
   
   equals(other) {
-    const hasSameReal = this.#real === other.#real;
-    const hasSameImaginary = this.#imaginary === other.#imaginary;
+    const isRealPartEqual = this.#real.equals(other.#real);
+    const isImaginaryPartEqual = this.#imaginary.equals(other.#imaginary);
     
-    return hasSameReal && hasSameImaginary;
+    return isRealPartEqual && isImaginaryPartEqual;
   }
 
   add(addend) {
-    const real = this.#real + addend.#real; 
-    const imaginary = this.#imaginary + addend.#imaginary;
+    const real = this.#real.add(addend.#real); 
+    const imaginary = this.#imaginary.add(addend.#imaginary);
 
     return new ComplexNumber(real, imaginary);
   }
   
   multiply(multiplier) {
-    const real = this.#real * multiplier.#real - this.#imaginary * multiplier.#imaginary;
-    const imaginary = this.#real * multiplier.#imaginary + this.#imaginary * multiplier.#real;
-    
+    const thisRealxOtherReal = this.#real.multiply(multiplier.#real);
+    const thisRealxOtherImaginary = multiplier.#imaginary.multiplyReal(this.#real);
+    const thisImaginaryxOtherReal = this.#imaginary.multiplyReal(multiplier.#real);
+    const thisImaginaryxOtherImaginary = this.#imaginary.multiply(multiplier.#imaginary);
+
+    const real = thisRealxOtherReal.add(thisImaginaryxOtherImaginary);
+    const imaginary = thisRealxOtherImaginary.add(thisImaginaryxOtherReal);
+
     return new ComplexNumber(real, imaginary);
   }
 }
