@@ -14,7 +14,7 @@ class ComplexNumber {
     const sign = this.#imaginary < 0 ? "-" : "+";
     return `${this.#real} ${sign} ${Math.abs(this.#imaginary)}i`;
   }
-
+  
   equals(other) {
     const hasSameReal = this.#real === other.#real;
     const hasSameImaginary = this.#imaginary === other.#imaginary;
@@ -32,7 +32,7 @@ class ComplexNumber {
   multiply(multiplier) {
     const real = this.#real * multiplier.#real - this.#imaginary * multiplier.#imaginary;
     const imaginary = this.#real * multiplier.#imaginary + this.#imaginary * multiplier.#real;
-
+    
     return new ComplexNumber(real, imaginary);
   }
 }
