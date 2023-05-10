@@ -11,6 +11,10 @@ class RealNumber {
     return this.#value.toString();
   }
 
+  isNegative() {
+    return this.#value < 0;
+  }
+
   equals(other) {
     return this.#value === other.#value;
   }

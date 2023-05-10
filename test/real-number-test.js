@@ -9,6 +9,20 @@ describe("toString", function () {
   });
 });
 
+describe("isNegative", function() {
+  it("should be true if it's value is negative", function() {
+    const realNumber = new RealNumber(-1);
+
+    assert.ok(realNumber.isNegative());
+  });
+
+  it("should be false if it's value is negative", function() {
+    const realNumber = new RealNumber(5);
+
+    assert.ok(!realNumber.isNegative());
+  });
+});
+
 describe("equals", function() {
   it("should be true if value of other real number is same as itself", function() {
     const realNumber = new RealNumber(4);
